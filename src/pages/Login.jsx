@@ -32,18 +32,26 @@ function validate() {
       })
           .then(res => res.json())
           .then(data => {
+            setIsLoading(false);
+
             if(data.message == "Invalid Password!"){
               alert(data.message)
             }
-             console.log(data);
-             setIsLoading(false)
-             localStorage.setItem("token", data.token);
-             localStorage.setItem("user", JSON.stringify(data.user));
-             navigate("/");
+            if(data.message == "User Not found."){
+              alert(data.message)
+            }
+            if(data.id) {
+              localStorage.setItem("token", data.accessToken);
+               navigate("/");
+            }
+            
  
           })
-          .catch(err => console.error(err))
-          setIsLoading(false)
+          .catch(err => {
+            console.error(err);
+            setIsLoading(false);
+          })
+          
     }
   }
 
