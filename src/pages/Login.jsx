@@ -9,6 +9,19 @@ function Login() {
   const navigate = useNavigate();
 
 function validate() {
+if(!username.current.value){
+  alert("Please enter a username");
+  username.current.focus();
+  setIsLoading(false);
+  return false;
+}
+if(!password.current.value){
+  alert("Please enter a password");
+  password.current.focus();
+  setIsLoading(false);
+  return false;
+}
+
   return true;
 }
   
